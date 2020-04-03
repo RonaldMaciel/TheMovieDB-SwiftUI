@@ -13,6 +13,8 @@
 		89A8D1AE2437EE0600A22294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89A8D1AD2437EE0600A22294 /* Assets.xcassets */; };
 		89A8D1B12437EE0600A22294 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89A8D1B02437EE0600A22294 /* Preview Assets.xcassets */; };
 		89A8D1B42437EE0600A22294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A8D1B22437EE0600A22294 /* LaunchScreen.storyboard */; };
+		89A8D1C62437F91D00A22294 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A8D1C52437F91D00A22294 /* Movie.swift */; };
+		89A8D1C82437F95100A22294 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A8D1C72437F95100A22294 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		89A8D1B02437EE0600A22294 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		89A8D1B32437EE0600A22294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89A8D1B52437EE0600A22294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89A8D1C52437F91D00A22294 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		89A8D1C72437F95100A22294 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +60,12 @@
 		89A8D1A62437EE0500A22294 /* TheMovieDB-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				89A8D1A72437EE0500A22294 /* AppDelegate.swift */,
-				89A8D1A92437EE0500A22294 /* SceneDelegate.swift */,
-				89A8D1AB2437EE0500A22294 /* ContentView.swift */,
+				89A8D1BB2437EE4700A22294 /* Support */,
+				89A8D1BE2437F5F100A22294 /* Network */,
+				89A8D1BF2437F88F00A22294 /* View */,
+				89A8D1C22437F8BB00A22294 /* Model */,
 				89A8D1AD2437EE0600A22294 /* Assets.xcassets */,
 				89A8D1B22437EE0600A22294 /* LaunchScreen.storyboard */,
-				89A8D1B52437EE0600A22294 /* Info.plist */,
 				89A8D1AF2437EE0600A22294 /* Preview Content */,
 			);
 			path = "TheMovieDB-SwiftUI";
@@ -73,6 +77,40 @@
 				89A8D1B02437EE0600A22294 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		89A8D1BB2437EE4700A22294 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				89A8D1A72437EE0500A22294 /* AppDelegate.swift */,
+				89A8D1A92437EE0500A22294 /* SceneDelegate.swift */,
+				89A8D1B52437EE0600A22294 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		89A8D1BE2437F5F100A22294 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				89A8D1C72437F95100A22294 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		89A8D1BF2437F88F00A22294 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				89A8D1AB2437EE0500A22294 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		89A8D1C22437F8BB00A22294 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				89A8D1C52437F91D00A22294 /* Movie.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +184,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89A8D1C82437F95100A22294 /* NetworkService.swift in Sources */,
 				89A8D1A82437EE0500A22294 /* AppDelegate.swift in Sources */,
 				89A8D1AA2437EE0500A22294 /* SceneDelegate.swift in Sources */,
 				89A8D1AC2437EE0500A22294 /* ContentView.swift in Sources */,
+				89A8D1C62437F91D00A22294 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +328,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TheMovieDB-SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = P7WV6D6894;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "TheMovieDB-SwiftUI/Info.plist";
+				INFOPLIST_FILE = "TheMovieDB-SwiftUI/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,7 +348,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TheMovieDB-SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = P7WV6D6894;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "TheMovieDB-SwiftUI/Info.plist";
+				INFOPLIST_FILE = "TheMovieDB-SwiftUI/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
