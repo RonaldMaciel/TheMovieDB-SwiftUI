@@ -10,48 +10,60 @@ import SwiftUI
 
 struct Cell: View {
     
-    var title = ""
-    var overview = ""
-    var rate = ""
-    var image = ""
+    var title: String = ""
+    var overview: String  = ""
+    var vote_average: String  = ""
+    var poster_pathh: String  = ""
     
+    @State var imagee: UIImage = UIImage()
     
-    
+    init(title: String, overview: String, vote_average: String, poster_path: String) {
+        self.title = title
+        self.overview = overview
+        self.vote_average = vote_average
+        self.poster_pathh = poster_path
+    }
     
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                Image(image)
-                    .resizable()
-                    .frame(width: 80, height: 118)
-                    .cornerRadius(10)
+        //        ScrollView(.horizontal) {
+        HStack {
+            Image(uiImage: imagee)
+                .resizable()
+                .frame(width: 80, height: 118)
+                .cornerRadius(10)
+            
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.title)
+                    .fontWeight(.medium)
+                    .lineLimit(1)
                 
-                VStack(alignment: .leading) {
-                    Text(title)
-                        .font(.title)
-                        .lineLimit(1)
-                    
-                    
-                    Text(overview)
+                Text(overview)
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+                    .lineLimit(4)
+                    .frame(width: 260)
+                
+                
+                HStack {
+                    Image("star")
+                    Text(vote_average)
                         .font(.subheadline)
                         .fontWeight(.thin)
-                        .lineLimit(3)
-                        .frame(width: 260)
-                    
-                    
-                    HStack {
-                        Text("*")
-                        Text(rate)
-                            .font(.subheadline)
-                            .fontWeight(.thin)
-                            .frame(width: 35)
-                    }
-                    .padding(5)
+                        .frame(width: 35)
                 }
-            }.onAppear() {
-                
             }
-        }//pegar imagem 
+        }
+        .onAppear() {
+            
+            
+            Network.sharedInstance.fetchImageWithURL(poster_path: self.poster_pathh, completion: { result in
+                DispatchQueue.main.async {
+//                    self.imagee = result
+                }
+                
+            })
+        }
     }
 }
 

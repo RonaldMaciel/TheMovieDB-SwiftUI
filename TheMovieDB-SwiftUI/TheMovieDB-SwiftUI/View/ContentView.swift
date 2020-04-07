@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var popularMovies: [Movie] = []
     @State var nowPlayingMovies: [Movie] = []
     
+    @State var image: UIImage = UIImage()
     
     var body: some View {
         NavigationView {
@@ -37,8 +38,8 @@ struct ContentView: View {
     var ListMovies: some View {
         List{
             ForEach(popularMovies, id: \.self) { movie in
-                NavigationLink(destination: DetailView(title: movie.title, overview: movie.overview, rate: "\(movie.vote_average)", poster: movie.poster_path)) {
-                    Cell(title: movie.title, overview: movie.overview, rate: "\(movie.vote_average)", image: movie.poster_path)
+                NavigationLink(destination: DetailView(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)) {
+                    Cell(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)
                 }
                 
             }
