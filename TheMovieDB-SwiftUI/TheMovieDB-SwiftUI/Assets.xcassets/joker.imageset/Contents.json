@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "big-poster-filme-joker-coringa-joaquin-phoenix-tam-90x60-cm-nerd.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

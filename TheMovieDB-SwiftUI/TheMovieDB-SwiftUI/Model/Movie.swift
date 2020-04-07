@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 
-struct Movie {
-    var id: Int
+struct Movie: Hashable, Codable {
+    var id = UUID()
     var title: String
     var overview: String
     var genres: String
@@ -19,3 +19,6 @@ struct Movie {
     var poster_path: String
     
 }
+
+
+extension Movie: Identifiable { }
