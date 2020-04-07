@@ -11,14 +11,13 @@ import UIKit
 
 
 struct Movie: Hashable, Codable {
-    var id = UUID()
+    var id: Int
     var title: String
     var overview: String
-    var genres: String
     var vote_average: Double
     var poster_path: String
     
 }
 
 
-extension Movie: Identifiable { }
+

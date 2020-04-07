@@ -15,46 +15,43 @@ struct ContentView: View {
     
     
     var body: some View {
-        //        NavigationView {
-        //            List(0 ..< 5) { item in
-        HStack {
-            Image("joker")
-                .resizable()
-                .frame(width: 80, height: 118)
-                .cornerRadius(10)
+        NavigationView {
+            ListMovies
+        }
+        .onAppear() {
             
-            VStack(alignment: .leading) {
-                Text("Joker")
-                    .font(.title)
-                    .lineLimit(1)
-                
-                
-                Text("overviewaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-                    .font(.subheadline)
-                    .fontWeight(.thin)
-                    .lineLimit(3)
-                    .frame(width: 260)
-                
-                
-                HStack {
-                    Text("*")
-                    Text("999")
-                        .font(.subheadline)
-                        .fontWeight(.thin)
-                        .frame(width: 35)
+            Network.sharedInstance.fetchMovies(with: .POPULAR, completion: { result in
+                switch result {
+                case .success(let movies):
+                    DispatchQueue.main.async {
+                        self.popularMovies = movies
+                        print(self.popularMovies.count)
+                    }
+                case .failure(_):
+                    print("fail")
                 }
-                .padding(5)
+            })
+        }
+    }
+    
+    var ListMovies: some View {
+        List{
+            ForEach(popularMovies, id: \.self) { movie in
+                NavigationLink(destination: DetailView(title: movie.title, overview: movie.overview, rate: "\(movie.vote_average)", poster: movie.poster_path)) {
+                    Cell(title: movie.title, overview: movie.overview, rate: "\(movie.vote_average)", image: movie.poster_path)
+                }
                 
             }
-            
         }
-        //            }.navigationBarTitle("MovieDB")
-        //        }
+        .navigationBarTitle("MoviesDB", displayMode: .large)
     }
 }
+ 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+
