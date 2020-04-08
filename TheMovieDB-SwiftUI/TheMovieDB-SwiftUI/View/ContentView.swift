@@ -17,37 +17,85 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ListMovies
-        }
-        .onAppear() {
             
-            Network.sharedInstance.fetchMovies(with: .POPULAR, completion: { result in
-                switch result {
-                case .success(let movies):
-                    DispatchQueue.main.async {
-                        self.popularMovies = movies
-                        print(self.popularMovies.count)
+            // Display the Popular and the Now Playing Sections
+            ListMovies
+                .navigationBarTitle("MoviesDB", displayMode: .large)
+            
+        }
+            // viewDidLoad()
+            .onAppear() {
+                UITableView.appearance().separatorColor = .clear
+                
+                Network.sharedInstance.fetchMovies(with: .POPULAR, completion: { result in
+                  
+                    switch result {
+                    case .success(let movies):
+                        DispatchQueue.main.async {
+                            self.popularMovies = movies
+                            //                        print(self.popularMovies.count)
+                        }
+                    case .failure(_):
+                        print("fail to fetch POPULAR MOVIES")
                     }
-                case .failure(_):
-                    print("fail")
-                }
-            })
+                })
+                
+                Network.sharedInstance.fetchMovies(with: .NOWPLAYING, completion: { result in
+                    
+                    switch result {
+                    case .success(let movies):
+                        DispatchQueue.main.async {
+                            self.nowPlayingMovies = movies
+                        }
+                    case .failure(_):
+                        print("fail to fetch NOW PLAYING MOVIES")
+                    }
+                })
         }
     }
     
+    
+    
     var ListMovies: some View {
         List{
-            ForEach(popularMovies, id: \.self) { movie in
-                NavigationLink(destination: DetailView(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)) {
-                    Cell(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)
+            
+            // Popular Section
+            Text("Popular")
+                .font(.headline)
+                .fontWeight(.bold)
+            
+            VStack {
+                ScrollView(.horizontal) {
+                    HStack {
+//                        Text("bateta")
+                        ForEach(popularMovies, id: \.self) { movie in
+                            NavigationLink(destination: DetailView(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)) {
+                                Cell(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)
+                            }
+                            
+                            
+                        }
+                    }
                 }
+            }
+            
+            // Now Playing Section
+            Group {
+                Text("Now Playing")
+                    .font(.headline)
+                    .fontWeight(.bold)
                 
+                ForEach(nowPlayingMovies, id: \.self) { movie in
+                    NavigationLink(destination: DetailView(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)) {
+                        Cell(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)
+                    }
+                    
+                }
             }
         }
-        .navigationBarTitle("MoviesDB", displayMode: .large)
     }
 }
- 
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

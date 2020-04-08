@@ -27,7 +27,7 @@ struct Cell: View {
     var body: some View {
         //        ScrollView(.horizontal) {
         HStack {
-            Image(uiImage: imagee)
+            Image(uiImage: imagee).renderingMode(.original)
                 .resizable()
                 .frame(width: 80, height: 118)
                 .cornerRadius(10)
@@ -37,12 +37,15 @@ struct Cell: View {
                     .font(.title)
                     .fontWeight(.medium)
                     .lineLimit(1)
+                    .foregroundColor(Color.primary)
                 
                 Text(overview)
                     .font(.subheadline)
                     .fontWeight(.thin)
                     .lineLimit(4)
                     .frame(width: 260)
+                    .foregroundColor(Color.gray)
+                
                 
                 
                 HStack {
@@ -51,17 +54,17 @@ struct Cell: View {
                         .font(.subheadline)
                         .fontWeight(.thin)
                         .frame(width: 35)
+
                 }
+                .foregroundColor(Color.primary)
             }
         }
         .onAppear() {
             
-            
             Network.sharedInstance.fetchImageWithURL(poster_path: self.poster_pathh, completion: { result in
                 DispatchQueue.main.async {
-//                    self.imagee = result
+                    self.imagee = result
                 }
-                
             })
         }
     }

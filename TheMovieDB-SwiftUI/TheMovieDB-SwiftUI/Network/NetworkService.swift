@@ -65,7 +65,7 @@ class Network {
                 completion(.failure(.invalidResponse))
                 return
             }
-                
+            
             guard let data = data else {
                 completion(.failure(.invalidData))
                 return
@@ -74,7 +74,7 @@ class Network {
             do {
                 let decoder = JSONDecoder()
                 var movies: [Movie] = []
-                      
+                
                 if let results = try? decoder.decode(MoviesResults.self, from: data) {
                     movies = results.results
                 }
@@ -89,30 +89,31 @@ class Network {
         task.resume()
     }
     
-    func fetchImageWithURL(poster_path: String, completion: @escaping (Result<UIImage, ResultError>) -> Void) {
+    func fetchImageWithURL(poster_path: String, completion: @escaping (UIImage) -> Void) {
         
         guard let URL = URL(string: "https://image.tmdb.org/t/p/w500\(poster_path)") else { return }
+        
         let task = URLSession.shared.dataTask(with: URL) { (data, response, err) in
             if let _ = err {
-                completion(.failure(.unableToComplete))
+                print("deu ruim pacero")
                 return
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(.invalidData))
+                print("deu ruim pacero 2")
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.invalidData))
+                print("deu ruim pacero 3")
                 return
             }
-        
+            
             guard let image = UIImage(data: data) else { return }
             
             self.cache.setObject(image, forKey: NSString(string: poster_path))
             
-            completion(.success(image))
+            completion(image)
             
             
         }
@@ -128,13 +129,8 @@ class Network {
             var image: UIImage = UIImage()
             
             fetchImageWithURL(poster_path: poster_path) { result in
-                switch result {
-                case .success(let resultImage):
-                    image = resultImage
-                case .failure(_):
-                    break
+                image = result
                 
-                }
             }
             return image
         }

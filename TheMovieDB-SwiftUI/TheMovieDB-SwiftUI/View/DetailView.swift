@@ -58,7 +58,7 @@ struct DetailView: View {
             .onAppear() {
                 Network.sharedInstance.fetchImageWithURL(poster_path: self.poster_path, completion: { result in
                     DispatchQueue.main.async {
-                        //                        self.image = result
+                        self.image = result
                     }
                 })
             }
@@ -80,9 +80,6 @@ struct DetailView: View {
                 .frame(width: 1, height: 400, alignment: .center)
                 .foregroundColor(.clear)
         }
-        
-        
-        
         
         
     }
