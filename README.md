@@ -9,7 +9,6 @@ It also supports Dark Mode!
 
 ## Images
 <img src="./Screenshots%20Examples/feedWhite.png" width="300" /><img src="./Screenshots%20Examples/detailWhite.png" width="300" />
-Dark Mode:
 
 <img src="./Screenshots%20Examples/feedDark.png" width="300" /><img src="./Screenshots%20Examples/detailDark.png" width="300" /> 
 
