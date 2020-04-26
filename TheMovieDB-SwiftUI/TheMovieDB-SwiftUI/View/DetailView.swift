@@ -17,31 +17,26 @@ struct DetailView: View {
     
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Image(uiImage: image)
                     .resizable()
                     .frame(width: 130, height: 195)
                     .cornerRadius(10)
                 
-                VStack(alignment: .leading, spacing: 5) {
-                    
-                    Rectangle()
-                        .frame(width: 20, height: 60, alignment: .leading)
-                        .foregroundColor(.clear)
-                    
+                VStack(alignment: .leading, spacing: 55) {
                     
                     Text(title)
                         .font(.title)
                         .fontWeight(.medium)
                         .lineLimit(1)
                     
-                    Text("In here it was supposed to have the genrer list... but... yeah.. :)")
+       
+                    Text("Action, Animation, Family")
                         .font(.subheadline)
-                        .fontWeight(.thin)
-                        .lineLimit(3)
-                        .frame(width: 260)
-                    
+                               .fontWeight(.thin)
+                               .lineLimit(3)
+//                               .frame(width: 260)
                     
                     HStack {
                         Image("star")
@@ -50,8 +45,8 @@ struct DetailView: View {
                             .fontWeight(.thin)
                             .frame(width: 35)
                     }
-                    .padding(5)
                 }
+                .padding(.leading)
             }
             .navigationBarTitle("Detail", displayMode: .inline)
             .onAppear() {
