@@ -8,7 +8,7 @@ Using the MVVM architecture with the Network Service, I create this project to l
 It also supports Dark Mode!
 
 ## Images
-<img src=".TheMovieDB-SwiftUI/Screenshots%20Examples/feedWhite.png" width="300" /><img src=".TheMovieDB-SwiftUI/Screenshots%20Examples/detailWhite.png" width="300" />
-<img src=".TheMovieDB-SwiftUI/Screenshots%20Examples/feedDark.png" width="300" /><img src=".TheMovieDB-SwiftUI/Screenshots%20Examples/detailDark.png" width="300" /> 
+<img src="./Screenshots%20Examples/feedWhite.png" width="300" /><img src="./Screenshots%20Examples/detailWhite.png" width="300" />
+<img src="./Screenshots%20Examples/feedDark.png" width="300" /><img src="./Screenshots%20Examples/detailDark.png" width="300" /> 
 
 
