@@ -16,44 +16,42 @@ struct ContentView: View {
     @State var image: UIImage = UIImage()
     
     var body: some View {
+        
         NavigationView {
             
             // Display the Popular and the Now Playing Sections
             ListMovies
                 .navigationBarTitle("MoviesDB", displayMode: .large)
             
-        }
-            // viewDidLoad()
-            .onAppear() {
-                UITableView.appearance().separatorColor = .clear
+        }.onAppear() { // viewDidLoad()
+            UITableView.appearance().separatorStyle = .none
+            
+            Network.sharedInstance.fetchMovies(with: .POPULAR, completion: { result in
                 
-                Network.sharedInstance.fetchMovies(with: .POPULAR, completion: { result in
-                  
-                    switch result {
-                    case .success(let movies):
-                        DispatchQueue.main.async {
-                            self.popularMovies = movies
-                            //                        print(self.popularMovies.count)
-                        }
-                    case .failure(_):
-                        print("fail to fetch POPULAR MOVIES")
+                switch result {
+                case .success(let movies):
+                    DispatchQueue.main.async {
+                        self.popularMovies = movies
+                        //                        print(self.popularMovies.count)
                     }
-                })
+                case .failure(_):
+                    print("fail to fetch POPULAR MOVIES")
+                }
+            })
+            
+            Network.sharedInstance.fetchMovies(with: .NOWPLAYING, completion: { result in
                 
-                Network.sharedInstance.fetchMovies(with: .NOWPLAYING, completion: { result in
-                    
-                    switch result {
-                    case .success(let movies):
-                        DispatchQueue.main.async {
-                            self.nowPlayingMovies = movies
-                        }
-                    case .failure(_):
-                        print("fail to fetch NOW PLAYING MOVIES")
+                switch result {
+                case .success(let movies):
+                    DispatchQueue.main.async {
+                        self.nowPlayingMovies = movies
                     }
-                })
+                case .failure(_):
+                    print("fail to fetch NOW PLAYING MOVIES")
+                }
+            })
         }
     }
-    
     
     
     var ListMovies: some View {
@@ -64,10 +62,8 @@ struct ContentView: View {
                 .font(.headline)
                 .fontWeight(.bold)
             
-            VStack {
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal,showsIndicators: false ) {
                     HStack {
-//                        Text("bateta")
                         ForEach(popularMovies, id: \.self) { movie in
                             NavigationLink(destination: DetailView(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)) {
                                 Cell(title: movie.title, overview: movie.overview, vote_average: "\(movie.vote_average)", poster_path: movie.poster_path)
@@ -77,7 +73,6 @@ struct ContentView: View {
                         }
                     }
                 }
-            }
             
             // Now Playing Section
             Group {

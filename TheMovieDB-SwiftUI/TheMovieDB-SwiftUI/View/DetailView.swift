@@ -24,7 +24,7 @@ struct DetailView: View {
                     .frame(width: 130, height: 195)
                     .cornerRadius(10)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 5) {
                     
                     Rectangle()
                         .frame(width: 20, height: 60, alignment: .leading)
@@ -41,7 +41,6 @@ struct DetailView: View {
                         .fontWeight(.thin)
                         .lineLimit(3)
                         .frame(width: 260)
-                        .padding(.trailing, 4)
                     
                     
                     HStack {

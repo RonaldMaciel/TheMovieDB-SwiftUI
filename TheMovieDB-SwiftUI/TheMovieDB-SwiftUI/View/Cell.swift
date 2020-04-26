@@ -25,8 +25,7 @@ struct Cell: View {
     }
     
     var body: some View {
-        //        ScrollView(.horizontal) {
-        HStack {
+        HStack{
             Image(uiImage: imagee).renderingMode(.original)
                 .resizable()
                 .frame(width: 80, height: 118)
@@ -38,15 +37,16 @@ struct Cell: View {
                     .fontWeight(.medium)
                     .lineLimit(1)
                     .foregroundColor(Color.primary)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                    
                 
                 Text(overview)
                     .font(.subheadline)
                     .fontWeight(.thin)
-                    .lineLimit(4)
+                    .lineLimit(3)
                     .frame(width: 260)
                     .foregroundColor(Color.gray)
-                
-                
+
                 
                 HStack {
                     Image("star")
@@ -71,8 +71,14 @@ struct Cell: View {
 }
 
 
+struct Cell_Previews: PreviewProvider {
+    static var previews: some View {
+        Cell(title: "Joker ", overview: "Genre lIST", vote_average: "99", poster_path: "")
+    }
+}
+
 //struct Cell_Previews: PreviewProvider {
 //    static var previews: some View {
-//        Cell()
+//        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
 //    }
 //}
